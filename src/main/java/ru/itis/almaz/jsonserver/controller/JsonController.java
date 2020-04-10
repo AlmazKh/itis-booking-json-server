@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.itis.almaz.jsonserver.model.Business;
 import ru.itis.almaz.jsonserver.model.Cabinet;
 import ru.itis.almaz.jsonserver.model.Status;
 import ru.itis.almaz.jsonserver.model.Time;
 import ru.itis.almaz.jsonserver.dto.Timetable;
+import ru.itis.almaz.jsonserver.repository.BusinessRepository;
 import ru.itis.almaz.jsonserver.repository.CabinetRepository;
 
 import java.util.HashMap;
@@ -17,25 +19,27 @@ import java.util.Map;
 @RestController("/")
 public class JsonController {
 
-    final CabinetRepository repository;
+    final BusinessRepository repository;
 
-    public JsonController(CabinetRepository repository) {
+    public JsonController(BusinessRepository repository) {
         this.repository = repository;
     }
 
     @GetMapping("/timetable")
     public Timetable getTimeTable() {
-        List<Cabinet> cabinets = repository.findAll();
-        return new Timetable(cabinets);
+        repository.
+        List<Business> businesses = repository.findAll();
+        return new Timetable(businesses);
     }
 
-    @PostMapping
+    /*@PostMapping
     public ResponseEntity<Cabinet> setCabinet(@RequestBody Cabinet cabinetBody) {
         Cabinet cabinet = repository.save(cabinetBody);
 
         return ResponseEntity.ok(cabinet);
-    }
+    }*/
 
+/*
     @GetMapping("/setter1")
     public void setter() {
         Map<Time, Status> business = Map.of(Time.FirstClass, Status.Free, Time.SecondClass, Status.Booked, Time.ThirdClass, Status.Booked);
@@ -59,5 +63,6 @@ public class JsonController {
                 .build();
         repository.save(cabinet);
     }
+*/
 
 }
