@@ -6,4 +6,5 @@ import ru.itis.almaz.jsonserver.model.Cabinet;
 
 @Repository
 public interface CabinetRepository extends JpaRepository<Cabinet, Long> {
+
 }

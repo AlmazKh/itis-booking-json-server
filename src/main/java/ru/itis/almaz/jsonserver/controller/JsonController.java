@@ -1,35 +1,37 @@
 package ru.itis.almaz.jsonserver.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.itis.almaz.jsonserver.dto.TimetableFreeTimeByDate;
 import ru.itis.almaz.jsonserver.model.Business;
-import ru.itis.almaz.jsonserver.model.Cabinet;
-import ru.itis.almaz.jsonserver.model.Status;
-import ru.itis.almaz.jsonserver.model.Time;
 import ru.itis.almaz.jsonserver.dto.Timetable;
+import ru.itis.almaz.jsonserver.model.FreeTime;
 import ru.itis.almaz.jsonserver.repository.BusinessRepository;
-import ru.itis.almaz.jsonserver.repository.CabinetRepository;
+import ru.itis.almaz.jsonserver.repository.FreeTimeRepository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController("/")
 public class JsonController {
 
-    final BusinessRepository repository;
+    final BusinessRepository businessRepository;
+    final FreeTimeRepository freeTimeRepository;
 
-    public JsonController(BusinessRepository repository) {
-        this.repository = repository;
+    public JsonController(BusinessRepository businessRepository, FreeTimeRepository freeTimeRepository) {
+        this.businessRepository = businessRepository;
+        this.freeTimeRepository = freeTimeRepository;
     }
 
     @GetMapping("/timetable")
     public Timetable getTimeTable() {
-        repository.
-        List<Business> businesses = repository.findAll();
+        List<Business> businesses = businessRepository.findAll();
         return new Timetable(businesses);
+    }
+
+    @GetMapping("/timetable/date")
+    @ResponseBody
+    public List<FreeTime> getTimeTableByDate(@RequestParam(value = "date") String date) {
+        List<FreeTime> freeTimes = freeTimeRepository.findFreeTimesByDate(date);
+        return freeTimes;
     }
 
     /*@PostMapping
