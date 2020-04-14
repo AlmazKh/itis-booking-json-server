@@ -1,5 +1,6 @@
 package ru.itis.almaz.jsonserver.controller;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.almaz.jsonserver.dto.TimetableFreeTimeByDate;
 import ru.itis.almaz.jsonserver.model.Business;
@@ -27,13 +28,47 @@ public class JsonController {
         return new Timetable(businesses);
     }
 
-    @GetMapping("/timetable/date")
+    @GetMapping("/timetable/free")
     @ResponseBody
     public List<FreeTime> getTimeTableByDate(@RequestParam(value = "date") String date) {
         List<FreeTime> freeTimes = freeTimeRepository.findFreeTimesByDate(date);
         return freeTimes;
     }
 
+    @GetMapping("/timetable/free/filtered")
+    @ResponseBody
+    public List<FreeTime> findFreeTimesByDateAndAndCabinet_CapacityAndCabinet_Floor(
+            @RequestParam("date") String date,
+            @RequestParam("times") List<String> times,
+            @RequestParam("floors") List<Integer> floors,
+            @RequestParam("capacity") Integer capacity
+    ) {
+        return freeTimeRepository
+                .findFreeTimesByDateAndAndCabinet_CapacityAndCabinet_Floor(
+                        date,
+                        times,
+                        floors,
+                        capacity
+                );
+    }
+
+    @GetMapping("/business/filtered")
+    @ResponseBody
+    public List<Business> findFreeTimesByDateAndAndCabinet_CapacityAndCabinet_Floor(
+            @RequestParam("date") String date,
+            @RequestParam("times") List<String> times,
+            @RequestParam("floors") List<Integer> floors,
+            @RequestParam("capacity") Integer capacity,
+            @RequestParam("priority") Integer priority
+    ) {
+        return businessRepository.findFreeTimesByDateAndAndCabinet_CapacityAndCabinet_Floor(
+                date,
+                times,
+                floors,
+                capacity,
+                priority
+        );
+    }
     /*@PostMapping
     public ResponseEntity<Cabinet> setCabinet(@RequestBody Cabinet cabinetBody) {
         Cabinet cabinet = repository.save(cabinetBody);

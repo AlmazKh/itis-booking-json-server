@@ -23,5 +23,6 @@ public class Cabinet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer number;
+    private Integer floor;
     private Integer capacity;
 }
