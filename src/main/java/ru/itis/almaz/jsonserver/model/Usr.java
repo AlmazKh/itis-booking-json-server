@@ -23,4 +23,5 @@ public class Usr {
     private String groupNumber;
     private Integer priority;
     private String email;
+    private String photo;
 }
