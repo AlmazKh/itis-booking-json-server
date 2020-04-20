@@ -1,6 +1,7 @@
 package ru.itis.almaz.jsonserver.controller;
 
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.almaz.jsonserver.dto.TimetableFreeTimeByDate;
 import ru.itis.almaz.jsonserver.model.Business;
@@ -96,6 +97,16 @@ public class JsonController {
                 priority
         );
     }
+
+    @PostMapping(value = "/book")
+    public ResponseEntity<Business> bookCabinet(@RequestBody Business businessBody) {
+        Business business = businessRepository.save(businessBody);
+
+        return ResponseEntity.ok(business);
+    }
+
+
+
     /*@PostMapping
     public ResponseEntity<Cabinet> setCabinet(@RequestBody Cabinet cabinetBody) {
         Cabinet cabinet = repository.save(cabinetBody);
