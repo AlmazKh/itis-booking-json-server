@@ -1,6 +1,7 @@
 package ru.itis.almaz.jsonserver.controller;
 
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.almaz.jsonserver.dto.TimetableFreeTimeByDate;
@@ -111,7 +112,11 @@ public class JsonController {
         return businessRepository.findBusinessesByUsrId(userId);
     }
 
-
+    @PostMapping(value = "/user/bookings/delete")
+    public ResponseEntity cancelBooking(@RequestBody Long id) {
+        businessRepository.deleteById(id);
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
 
     /*@PostMapping
     public ResponseEntity<Cabinet> setCabinet(@RequestBody Cabinet cabinetBody) {
