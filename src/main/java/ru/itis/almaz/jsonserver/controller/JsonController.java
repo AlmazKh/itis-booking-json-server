@@ -105,6 +105,12 @@ public class JsonController {
         return ResponseEntity.ok(business);
     }
 
+    @GetMapping("/user/bookings")
+    @ResponseBody
+    public List<Business> getUserBookings(@RequestParam(value = "id") Long userId) {
+        return businessRepository.findBusinessesByUsrId(userId);
+    }
+
 
 
     /*@PostMapping

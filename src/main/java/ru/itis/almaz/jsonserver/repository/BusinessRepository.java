@@ -74,4 +74,6 @@ public interface BusinessRepository extends JpaRepository<Business, Long> {
             @Param("capacity") Integer capacity,
             @Param("priority") Integer priority
     );
+
+    List<Business> findBusinessesByUsrId(Long id);
 }
