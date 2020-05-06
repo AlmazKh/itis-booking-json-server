@@ -13,6 +13,7 @@ import ru.itis.almaz.jsonserver.repository.BusinessRepository;
 import ru.itis.almaz.jsonserver.repository.FreeTimeRepository;
 import ru.itis.almaz.jsonserver.repository.UserRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController("/")
@@ -116,6 +117,22 @@ public class JsonController {
     public ResponseEntity cancelBooking(@RequestBody Long id) {
         businessRepository.deleteById(id);
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @GetMapping("/map")
+    @ResponseBody
+    public List<Integer> getMapBookingCabinet(
+            @RequestParam(value = "date") String date,
+            @RequestParam(value = "time") String time,
+            @RequestParam(value = "floor") Integer floor) {
+        List<Integer> list = new ArrayList<>();
+        List<Business> businesses = businessRepository.findMapBusinesses(date, time, floor);
+
+        for (Business elt : businesses) {
+            list.add(elt.getCabinet().getNumber());
+        }
+
+        return list;
     }
 
     /*@PostMapping

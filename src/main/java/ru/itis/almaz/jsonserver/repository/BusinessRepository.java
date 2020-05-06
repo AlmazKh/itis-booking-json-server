@@ -76,4 +76,18 @@ public interface BusinessRepository extends JpaRepository<Business, Long> {
     );
 
     List<Business> findBusinessesByUsrId(Long id);
+
+    @Query(value = "select b.id,\n" +
+            "       b.date,\n" +
+            "       b.status,\n" +
+            "       b.time as time,\n" +
+            "       b.cabinet_id,\n" +
+            "       b.usr_id\n" +
+            "from business b\n" +
+            "         inner join cabinet c\n" +
+            "                    on b.cabinet_id = c.id\n" +
+            "                        and c.floor = :floor\n" +
+            "where b.date = :date and b.time = :time\n" +
+            "order by number, time;", nativeQuery = true)
+    List<Business> findMapBusinesses(String date, String time, Integer floor);
 }
