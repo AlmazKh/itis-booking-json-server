@@ -1,17 +1,15 @@
-package ru.itis.almaz.jsonserver.controller;
+package ru.itis.almaz.restful_server.controller;
 
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.itis.almaz.jsonserver.dto.TimetableFreeTimeByDate;
-import ru.itis.almaz.jsonserver.model.Business;
-import ru.itis.almaz.jsonserver.dto.Timetable;
-import ru.itis.almaz.jsonserver.model.FreeTime;
-import ru.itis.almaz.jsonserver.model.Usr;
-import ru.itis.almaz.jsonserver.repository.BusinessRepository;
-import ru.itis.almaz.jsonserver.repository.FreeTimeRepository;
-import ru.itis.almaz.jsonserver.repository.UserRepository;
+import ru.itis.almaz.restful_server.model.Business;
+import ru.itis.almaz.restful_server.dto.Timetable;
+import ru.itis.almaz.restful_server.model.FreeTime;
+import ru.itis.almaz.restful_server.model.Usr;
+import ru.itis.almaz.restful_server.repository.BusinessRepository;
+import ru.itis.almaz.restful_server.repository.FreeTimeRepository;
+import ru.itis.almaz.restful_server.repository.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;

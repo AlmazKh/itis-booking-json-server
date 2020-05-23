@@ -1,4 +1,4 @@
-package ru.itis.almaz.jsonserver.model;
+package ru.itis.almaz.restful_server.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Map;
 
 @Data
 @Builder

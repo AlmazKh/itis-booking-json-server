@@ -1,10 +1,9 @@
-package ru.itis.almaz.jsonserver.dto;
+package ru.itis.almaz.restful_server.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.itis.almaz.jsonserver.model.Business;
-import ru.itis.almaz.jsonserver.model.Cabinet;
+import ru.itis.almaz.restful_server.model.Business;
 
 import java.util.List;
 
