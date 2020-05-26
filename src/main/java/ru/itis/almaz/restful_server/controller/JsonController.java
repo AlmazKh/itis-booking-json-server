@@ -100,8 +100,15 @@ public class JsonController {
 
     @PostMapping(value = "/book")
     public ResponseEntity<Business> bookCabinet(@RequestBody Business businessBody) {
+        Business hasBusiness = businessRepository.findBusinessesByCabinetIdAndDateAndTime(
+                businessBody.getCabinet().getId(),
+                businessBody.getDate(),
+                businessBody.getTime()
+        );
+        if (hasBusiness != null) {
+            businessRepository.delete(hasBusiness);
+        }
         Business business = businessRepository.save(businessBody);
-
         return ResponseEntity.ok(business);
     }
 

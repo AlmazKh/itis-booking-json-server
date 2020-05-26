@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import ru.itis.almaz.restful_server.model.Business;
+import ru.itis.almaz.restful_server.model.Cabinet;
+import ru.itis.almaz.restful_server.model.Time;
 
 import java.util.List;
 
@@ -90,4 +92,6 @@ public interface BusinessRepository extends JpaRepository<Business, Long> {
             "where b.date = :date and b.time = :time\n" +
             "order by number, time;", nativeQuery = true)
     List<Business> findMapBusinesses(String date, String time, Integer floor);
+
+    Business findBusinessesByCabinetIdAndDateAndTime(Long cabinetId, String date, Time time);
 }

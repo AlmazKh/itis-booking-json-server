@@ -27,7 +27,7 @@ public interface FreeTimeRepository extends JpaRepository<FreeTime, Long> {
             "    where b.date = :date\n" +
             "      and b.cabinet_id = f.cabinet_id\n" +
             ")\n" +
-            "order by number, time;", nativeQuery = true)
+            "order by number;", nativeQuery = true)
     List<FreeTime> findFreeTimesByDateAndAndCabinet_CapacityAndCabinet_Floor(
             @Param("date") String date,
             @Param("times") List<String> times,
